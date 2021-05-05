@@ -1,15 +1,18 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import ToBuyList from './ToBuyList'
 import './App.css';
+import uuidv4 from 'uuidv4'
 
 function App() {
   const [products, setProducts] = useState([]);
   const productNameRef = useRef();
 
   function handleAddProduct(e) {
-    const name = productNameRef.current.value
+    const name = productNameRef.current.value;
     if (name === '') return;
-    console.log(name);
+    setProducts(prevProducts => {
+      return [...prevProducts, { id: uuidv4(), name: name, complete: false }]
+    })
     productNameRef.current.value = null;
 
   }
