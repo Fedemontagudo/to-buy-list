@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import ToBuyList from './ToBuyList'
-import './App.css';
 import { uuid } from 'uuidv4'
+import logo from './lista.svg'
 
 const LOCAL_STORAGE_KEY = 'toBuyApp.product'
 
@@ -43,8 +43,11 @@ function App() {
 
   return (
     <>
-      <ToBuyList productList={products} toggleProduct={toggleProduct} />
-      <input ref={productNameRef} type="text" />
+      <header className="header">
+        <img src={logo} className="App-logo" alt="logo" />
+      </header>
+      <ToBuyList className="toBuyL" productList={products} toggleProduct={toggleProduct} />
+      <input className="inputMenu" ref={productNameRef} type="text" />
       <button onClick={handleAddProduct}>Add product</button>
       <button onClick={handleClearProduct}> Clear completed products</button>
       <div>{products.filter(product => !product.complete).length} products left to buy</div>
