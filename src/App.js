@@ -43,6 +43,7 @@ function App() {
 
   return (
     <>
+      <h1 className="título">LISTA DE LA COMPRA</h1>
       <img src={logo} className="AppLogo" alt="logo" />
       <div className="pizarra">
         <ToBuyList className="toBuyList" productList={products} toggleProduct={toggleProduct} />
