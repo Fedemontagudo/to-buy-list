@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import ToBuyList from './ToBuyList'
-import { uuid } from 'uuidv4'
 import logo from './lista.svg'
+import { v4 } from 'uuid'
 
 const LOCAL_STORAGE_KEY = 'toBuyApp.product'
 
@@ -30,7 +30,7 @@ function App() {
     const name = productNameRef.current.value;
     if (name === '') return
     setProducts(prevProducts => {
-      return [...prevProducts, { id: uuid(), name: name, complete: false }]
+      return [...prevProducts, { id: v4(), name: name, complete: false }]
     })
     productNameRef.current.value = null;
   }
@@ -43,14 +43,14 @@ function App() {
 
   return (
     <>
-      <header className="header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
-      <ToBuyList className="toBuyL" productList={products} toggleProduct={toggleProduct} />
+      <img src={logo} className="AppLogo" alt="logo" />
+      <ToBuyList className="toBuyList" productList={products} toggleProduct={toggleProduct} />
       <input className="inputMenu" ref={productNameRef} type="text" />
-      <button onClick={handleAddProduct}>Add product</button>
-      <button onClick={handleClearProduct}> Clear completed products</button>
-      <div>{products.filter(product => !product.complete).length} products left to buy</div>
+      <div className="multi-button">
+        <button className="addProduct" onClick={handleAddProduct}>Add product</button>
+        <button className="deleteProducts" onClick={handleClearProduct}> Clear completed products</button>
+      </div>
+      <div className="productsLeft">{products.filter(product => !product.complete).length} products left to buy</div>
     </>
   );
 }
