@@ -44,13 +44,15 @@ function App() {
   return (
     <>
       <img src={logo} className="AppLogo" alt="logo" />
-      <ToBuyList className="toBuyList" productList={products} toggleProduct={toggleProduct} />
-      <input className="inputMenu" ref={productNameRef} type="text" />
-      <div className="multi-button">
-        <button className="addProduct" onClick={handleAddProduct}>Add product</button>
-        <button className="deleteProducts" onClick={handleClearProduct}> Clear completed products</button>
+      <div className="pizarra">
+        <ToBuyList className="toBuyList" productList={products} toggleProduct={toggleProduct} />
       </div>
-      <div className="productsLeft">{products.filter(product => !product.complete).length} products left to buy</div>
+      <input className="inputMenu" ref={productNameRef} type="text" />
+      <div className="multiButton">
+        <button className="addProduct" onClick={handleAddProduct}>Añadir Producto</button>
+        <button className="deleteProducts" onClick={handleClearProduct}>Borrar seleccionado</button>
+      </div>
+      <div className="productsLeft">{products.filter(product => !product.complete).length} productos por comprar</div>
     </>
   );
 }
